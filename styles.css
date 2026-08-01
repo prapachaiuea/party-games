@@ -1,0 +1,232 @@
+/* ============================================================
+   PARTY GAMES — the front door to Insider, Wavelength & Quiplash
+   Three cabinets on an arcade floor, each glowing in its own
+   game's real color. This page's only job: get you playing in
+   two taps. Everything quiet except the one thing you're deciding.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #0c0c10;
+  --surface: #17171d;
+  --surface-raised: #1e1e26;
+
+  --text: #f4f3f6;
+  --text-muted: #8b8a94;
+  --text-faint: #57565f;
+
+  --border: #26262f;
+
+  --insider: #ff4f93;
+  --wavelength: #ffb03f;
+  --quiplash: #2de2c1;
+
+  --font-display: "Bungee", "Arial Black", sans-serif;
+  --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app {
+  width: 100%;
+  max-width: 460px;
+  padding: 2.5rem 1.25rem 3rem;
+}
+
+.hub-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hub-eyebrow {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.hub-wordmark {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(90deg, var(--insider), var(--wavelength) 50%, var(--quiplash));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hub-tagline {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cabinet-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Each cabinet: a soft ambient corner glow at rest, and a chasing marquee-light border that
+   wakes up on hover/focus — like walking up to a cabinet and it noticing you. The entrance
+   animation (on the <a> itself) and the hover chase (on ::before) are kept on separate
+   elements/properties on purpose — reassigning the same `animation` shorthand for both would
+   make hovering restart the entrance and flash the card invisible for a frame. */
+.cabinet {
+  --glow: var(--insider);
+  position: relative;
+  display: block;
+  border-radius: 18px;
+  padding: 2px;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  animation-name: power-on;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.cabinet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle, 0deg),
+    transparent 0%, var(--glow) 6%, transparent 14%,
+    transparent 50%, var(--glow) 56%, transparent 64%, transparent 100%);
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.cabinet:hover::before,
+.cabinet:focus-visible::before {
+  animation: chase 2.2s linear infinite;
+}
+
+.cabinet:focus-visible {
+  outline: 2px solid var(--glow);
+  outline-offset: 3px;
+}
+
+@keyframes chase {
+  to { --angle: 360deg; }
+}
+
+.cabinet-insider { --glow: var(--insider); animation-delay: 0.05s; }
+.cabinet-wavelength { --glow: var(--wavelength); animation-delay: 0.2s; }
+.cabinet-quiplash { --glow: var(--quiplash); animation-delay: 0.35s; }
+
+@keyframes power-on {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.cabinet-glow {
+  position: absolute;
+  inset: -20px -20px auto auto;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, var(--glow), transparent 70%);
+  opacity: 0.16;
+  filter: blur(4px);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.cabinet-inner {
+  position: relative;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  overflow: hidden;
+  transition: background 0.15s ease;
+}
+
+.cabinet:hover .cabinet-inner,
+.cabinet:focus-visible .cabinet-inner {
+  background: var(--surface-raised);
+}
+
+.cabinet:active .cabinet-inner {
+  transform: scale(0.99);
+}
+
+.cabinet-eyebrow {
+  margin: 0 0 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--glow);
+}
+
+.cabinet-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.cabinet-tagline {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.cabinet-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.cabinet-cta {
+  color: var(--glow);
+  font-weight: 700;
+}
+
+.hub-footnote {
+  margin: 2rem 0 0;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
