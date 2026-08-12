@@ -24,6 +24,7 @@
   --quiplash: #2de2c1;
   --fibbing: #ff6152;
   --trivia: #7a1220;
+  --werewolf: #7ea2ff;
 
   --font-display: "Bungee", "Arial Black", sans-serif;
   --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -81,7 +82,7 @@ body {
   font-size: 2.5rem;
   line-height: 1;
   margin: 0 0 0.75rem;
-  background: linear-gradient(90deg, var(--insider), var(--wavelength) 28%, var(--quiplash) 52%, var(--fibbing) 76%, var(--trivia));
+  background: linear-gradient(90deg, var(--insider), var(--wavelength) 22%, var(--quiplash) 40%, var(--fibbing) 60%, var(--trivia) 80%, var(--werewolf));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -155,6 +156,7 @@ body {
 .cabinet-quiplash { --glow: var(--quiplash); animation-delay: 0.35s; }
 .cabinet-fibbing { --glow: var(--fibbing); animation-delay: 0.5s; }
 .cabinet-trivia { --glow: var(--trivia); animation-delay: 0.65s; }
+.cabinet-werewolf { --glow: var(--werewolf); animation-delay: 0.8s; }
 
 @keyframes power-on {
   0% { opacity: 0; transform: translateY(6px); }
