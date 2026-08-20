@@ -1,6 +1,6 @@
 # Party Games
 
-The one link to send friends before game night. A small menu page that links out to six browser party games — pick one, tap it, everyone's in.
+The one link to send friends before game night. A small menu page that links out to seven browser party games — pick one, tap it, everyone's in.
 
 **Live:** https://prapachaiuea.github.io/party-games/
 
@@ -12,6 +12,7 @@ The one link to send friends before game night. A small menu page that links out
 | [Fibbing It](https://github.com/prapachaiuea/fibbing-it-game) | One true answer, everyone else writes a convincing lie — spot the truth. |
 | [Trivia Murder Party](https://github.com/prapachaiuea/trivia-murder-party-game) | Answer trivia to stay safe, or answer wrong and gamble your life in a reflex trial. |
 | [Werewolf](https://github.com/prapachaiuea/werewolf-game) | Wolves hunt in secret each night, the village votes out a suspect each day — survive till dawn or catch them first. |
+| [Sounds Fishy](https://github.com/prapachaiuea/sounds-fishy-game) | Weird-but-true trivia bluffing — one player knows the real answer, everyone else lies, and the questioner has to catch every liar without hitting the truth. |
 
 ## How it works
 
@@ -20,7 +21,7 @@ This page is intentionally simple: static HTML/CSS, no JavaScript, no Firebase, 
 ## Project structure
 
 ```
-index.html    six linked cards, one per game
+index.html    seven linked cards, one per game
 styles.css    all styling — colors are pulled from each game's own real accent color
 ```
 
